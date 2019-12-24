@@ -28,7 +28,7 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 ### `reek_flags`
 
-Optional. reek flags. (reek `<reek_flags>`)
+Optional. reek flags. (reek --single-line `<reek_flags>`)
 
 ### `tool_name`
 
