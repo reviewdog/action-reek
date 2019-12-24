@@ -1,6 +1,8 @@
 # GitHub Action: Run reek with reviewdog 🐶
 
-![](https://github.com/mgrachev/action-reek/workflows/Docker%20Image%20CI/badge.svg)
+![](https://github.com/reviewdog/action-reek/workflows/CI/badge.svg)
+![](https://img.shields.io/github/license/reviewdog/action-reek)
+![](https://img.shields.io/github/v/release/reviewdog/action-reek)
 
 This action runs [reek](https://github.com/troessner/reek) with
 [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve
@@ -26,9 +28,14 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 **Required**. Must be in form of `github_token: ${{ secrets.github_token }}`'.
 
+### `reek_version`
+
+Optional. Set reek version. 
+By default, the latest version is installed.
+
 ### `reek_flags`
 
-Optional. reek flags. (reek --single-line `<reek_flags>`)
+Optional. reek flags. (reek --single-line . `<reek_flags>`)
 
 ### `tool_name`
 
@@ -58,9 +65,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
       - name: reek
-        uses: mgrachev/action-reek@v1.0.0
+        uses: reviewdog/action-reek@v1.0.0
         with:
           github_token: ${{ secrets.github_token }}
+          reek_version: 6.0.0
           reporter: github-pr-review # Default is github-pr-check
 ```
 

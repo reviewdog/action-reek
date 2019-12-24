@@ -5,8 +5,10 @@ inputs:
   github_token:
     description: 'GITHUB_TOKEN.'
     required: true
+  reek_version:
+    description: 'Reek version'
   reek_flags:
-    description: 'reek flags. (reek <reek_flags>)'
+    description: 'reek flags. (reek --single-line <reek_flags>)'
     default: ''
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
@@ -24,6 +26,7 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.github_token }}
+    - ${{ inputs.reek_version }}
     - ${{ inputs.reek_flags }}
     - ${{ inputs.tool_name }}
     - ${{ inputs.level }}
