@@ -26,7 +26,7 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 ### `github_token`
 
-**Required**. Must be in form of `github_token: ${{ secrets.github_token }}`'.
+**Required**. Must be in form of `github_token: ${{ secrets.github_token }}`.
 
 ### `reek_version`
 
@@ -80,3 +80,7 @@ jobs:
       alt="Sponsored by Evrone" width="210">
   </a>
 </p>
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit)
