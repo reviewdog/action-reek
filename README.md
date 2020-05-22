@@ -1,8 +1,11 @@
 # GitHub Action: Run reek with reviewdog 🐶
 
-![](https://github.com/reviewdog/action-reek/workflows/CI/badge.svg)
-![](https://img.shields.io/github/license/reviewdog/action-reek)
-![](https://img.shields.io/github/v/release/reviewdog/action-reek)
+[![](https://github.com/reviewdog/action-reek/workflows/CI/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3ACI)
+[![](https://img.shields.io/github/license/reviewdog/action-reek)](./LICENSE)
+[![depup](https://github.com/reviewdog/action-reek/workflows/depup/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3Adepup)
+[![release](https://github.com/reviewdog/action-reek/workflows/release/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-reek?logo=github&sort=semver)](https://github.com/reviewdog/action-reek/releases)
+[![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
 This action runs [reek](https://github.com/troessner/reek) with
 [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve
@@ -35,7 +38,7 @@ By default, the latest version is installed.
 
 ### `reek_flags`
 
-Optional. reek flags. (reek --single-line . `<reek_flags>`)
+Optional. Reek flags. (reek --single-line . `<reek_flags>`)
 
 ### `tool_name`
 
@@ -52,6 +55,20 @@ It's same as `-level` flag of reviewdog.
 Optional. Reporter of reviewdog command [`github-pr-check`, `github-pr-review`].
 The default is `github-pr-check`.
 
+### `filter_mode`
+
+Optional. Filtering mode for the reviewdog command [`added`, `diff_context`, `file`, `nofilter`].
+Default is `added`.
+
+### `fail_on_error`
+
+Optional.  Exit code for reviewdog when errors are found [`true`, `false`]
+Default is `false`.
+
+### `reviewdog_flags`
+
+Optional. Additional reviewdog flags.
+
 ## Example usage
 
 ```yml
@@ -67,8 +84,8 @@ jobs:
       - name: reek
         uses: reviewdog/action-reek@v1
         with:
-          github_token: ${{ secrets.github_token }}
           reek_version: 6.0.0
+          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
 ```
 
