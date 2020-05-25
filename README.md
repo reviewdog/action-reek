@@ -38,7 +38,7 @@ By default, the latest version is installed.
 
 ### `reek_flags`
 
-Optional. Reek flags. (reek --single-line . `<reek_flags>`)
+Optional. Reek flags. (`reek --single-line . <reek_flags>`)
 
 ### `tool_name`
 
