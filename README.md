@@ -33,8 +33,10 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 ### `reek_version`
 
-Optional. Set reek version. 
-By default, the latest version is installed.
+Optional. Set reek version. Possible values:
+* empty or omit: install latest version
+* `gemfile`: install version from Gemfile (`Gemfile.lock` should be presented, otherwise it will fallback to latest bundler version)
+* version (e.g. `6.0.0`): install said version
 
 ### `reek_flags`
 
