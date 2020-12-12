@@ -3,7 +3,7 @@ description: '🐶 Run reek with reviewdog on pull requests to improve code revi
 author: 'mgrachev (reviewdog)'
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN.'
+    description: 'GITHUB_TOKEN'
     required: true
   reek_version:
     description: 'Reek version'
@@ -35,18 +35,23 @@ inputs:
     description: 'Additional reviewdog flags'
     default: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.github_token }}
-    - ${{ inputs.reek_version }}
-    - ${{ inputs.reek_flags }}
-    - ${{ inputs.tool_name }}
-    - ${{ inputs.level }}
-    - ${{ inputs.reporter }}
-    - ${{ inputs.filter_mode }}
-    - ${{ inputs.fail_on_error }}
-    - ${{ inputs.reviewdog_flags }}
+  using: 'composite'
+  steps:
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: sh
+      env:
+        REVIEWDOG_VERSION: v0.11.0
+        # INPUT_<VARIABLE_NAME> is not available in Composite run steps
+        # https://github.community/t/input-variable-name-is-not-available-in-composite-run-steps/127611
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_REEK_VERSION: ${{ inputs.reek_version }}
+        INPUT_REEK_FLAGS: ${{ inputs.reek_flags }}
+        INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
+        INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
 branding:
   icon: 'check-circle'
   color: 'red'
