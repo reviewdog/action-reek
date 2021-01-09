@@ -1,6 +1,5 @@
 # GitHub Action: Run reek with reviewdog 🐶
 
-[![](https://github.com/reviewdog/action-reek/workflows/CI/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3ACI)
 [![](https://img.shields.io/github/license/reviewdog/action-reek)](./LICENSE)
 [![depup](https://github.com/reviewdog/action-reek/workflows/depup/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3Adepup)
 [![release](https://github.com/reviewdog/action-reek/workflows/release/badge.svg)](https://github.com/reviewdog/action-reek/actions?query=workflow%3Arelease)
