@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -euo pipefail
 
 version() {
   if [ -n "$1" ]; then
@@ -21,7 +23,7 @@ if [[ $INPUT_REEK_VERSION = "gemfile" ]]; then
   # if Gemfile.lock is here
   if [[ -f 'Gemfile.lock' ]]; then
     # grep for reek version
-    REEK_GEMFILE_VERSION=`cat Gemfile.lock | grep -oP '^\s{4}reek\s\(\K.*(?=\))'`
+    REEK_GEMFILE_VERSION=$(grep -oP '^\s{4}reek\s\(\K.*(?=\))' Gemfile.lock)
 
     # if reek version found, then pass it to the gem install
     # left it empty otherwise, so no version will be passed
