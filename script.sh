@@ -40,7 +40,7 @@ if [[ $INPUT_REEK_VERSION = "gemfile" ]]; then
     REEK_VERSION=$INPUT_REEK_VERSION
 fi
 
-gem install -N reek $(version $REEK_VERSION)
+sudo gem install -N reek $(version $REEK_VERSION)
 echo '::endgroup::'
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
