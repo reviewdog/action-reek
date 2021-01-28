@@ -1,7 +1,4 @@
-#!/bin/bash
-
-set -e
-set -o pipefail
+#!/bin/sh
 
 version() {
   if [ -n "$1" ]; then
@@ -13,7 +10,6 @@ cd "${GITHUB_WORKSPACE}" || exit
 
 TEMP_PATH="$(mktemp -d)"
 PATH="${TEMP_PATH}:$PATH"
-REEK_VERSION=$INPUT_REEK_VERSION
 
 echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
@@ -21,26 +17,29 @@ echo '::endgroup::'
 
 echo '::group:: Installing reek ... https://github.com/troessner/reek'
 # if 'gemfile' reek version selected
-if [[ $INPUT_REEK_VERSION = "gemfile" ]]; then
+if [ "$INPUT_REEK_VERSION" = "gemfile" ]; then
   # if Gemfile.lock is here
-  if [[ -f 'Gemfile.lock' ]]; then
+  if [ -f 'Gemfile.lock' ]; then
     # grep for reek version
     REEK_GEMFILE_VERSION=$(grep -oP '^\s{4}reek\s\(\K.*(?=\))' Gemfile.lock)
 
     # if reek version found, then pass it to the gem install
     # left it empty otherwise, so no version will be passed
-    if [[ -n "$REEK_GEMFILE_VERSION" ]]; then
-      export REEK_VERSION=$REEK_GEMFILE_VERSION
+    if [ -n "$REEK_GEMFILE_VERSION" ]; then
+      REEK_VERSION=$REEK_GEMFILE_VERSION
       else
         printf "Cannot get the reek's version from Gemfile.lock. The latest version will be installed."
     fi
     else
       printf 'Gemfile.lock not found. The latest version will be installed.'
   fi
+  else
+    # set desired reek version
+    REEK_VERSION=$INPUT_REEK_VERSION
 fi
 
 # shellcheck disable=SC2046,SC2086
-sudo gem install --no-document reek $(version $REEK_VERSION)
+gem install -N reek $(version $REEK_VERSION)
 echo '::endgroup::'
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
