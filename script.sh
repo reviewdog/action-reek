@@ -54,4 +54,9 @@ reek --single-line . ${INPUT_REEK_FLAGS} \
     -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
     -level="${INPUT_LEVEL}" \
     ${INPUT_REVIEWDOG_FLAGS}
+
+reviewdog_rc=$?
+
 echo '::endgroup::'
+
+exit $reviewdog_rc
