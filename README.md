@@ -82,10 +82,13 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
       - name: reek
         uses: reviewdog/action-reek@v1
         with:
-          reek_version: 6.0.0
+          reek_version: gemfile
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
 ```
