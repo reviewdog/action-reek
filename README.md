@@ -28,7 +28,7 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 ### `github_token`
 
-**Required**. Must be in form of `github_token: ${{ secrets.github_token }}`.
+`GITHUB_TOKEN`. Default is `${{ github.token }}`.
 
 ### `reek_version`
 
@@ -89,7 +89,6 @@ jobs:
         uses: reviewdog/action-reek@v1
         with:
           reek_version: gemfile
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
 ```
 
