@@ -13,4 +13,4 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           pattern: "*.sh"
-          fail_on_error: true
+          fail_level: any
