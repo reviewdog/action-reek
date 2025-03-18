@@ -89,12 +89,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: ruby/setup-ruby@1a615958ad9d422dd932dc1d5823942ee002799f # v1.227.0
         with:
           ruby-version: 3.0.0
       - name: reek
-        uses: reviewdog/action-reek@v1
+        uses: reviewdog/action-reek@f748c368e3a04fcb435e518067ab722ad228d7a9 # v1.19.2
         with:
           reek_version: gemfile
           reporter: github-pr-review # Default is github-pr-check
