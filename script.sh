@@ -6,7 +6,7 @@ version() {
   fi
 }
 
-cd "${GITHUB_WORKSPACE}" || exit
+cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit
 
 TEMP_PATH="$(mktemp -d)"
 PATH="${TEMP_PATH}:$PATH"
