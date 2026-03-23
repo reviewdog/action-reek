@@ -78,6 +78,10 @@ Default is `false`.
 
 Optional. Additional reviewdog flags.
 
+### `workdir`
+
+Optional. The directory from which to look for and run reek. Default `.`.
+
 ## Example usage
 
 ```yml
@@ -94,7 +98,7 @@ jobs:
         with:
           ruby-version: 3.0.0
       - name: reek
-        uses: reviewdog/action-reek@f748c368e3a04fcb435e518067ab722ad228d7a9 # v1.19.2
+        uses: reviewdog/action-reek@43d3a426ebcfd42aca089a877b60f8e6170c51e0 # v1.20.0
         with:
           reek_version: gemfile
           reporter: github-pr-review # Default is github-pr-check
