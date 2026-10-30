@@ -9,7 +9,7 @@ jobs:
         working-directory: test
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: ruby/setup-ruby@922ebc4c5262cd14e07bb0e1db020984b6c064fe # v1.226.0
+      - uses: ruby/setup-ruby@v1.335.0
         with:
           ruby-version: ruby
       - uses: ./
